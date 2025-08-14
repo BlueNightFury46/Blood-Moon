@@ -1,0 +1,23 @@
+name: BloodMoon
+version: '1.0'
+main: bluenightfury46.dev.bloodMoon.BloodMoon
+api-version: '1.21'
+authors: [ BlueNightFury46 ]
+description: Adds Blood moons to the game
+website: bluenightfury46.dev
+commands:
+  setequipement:
+    description: 'Sets the equipement that entities get during Blood-Moons'
+
+  trigger:
+    description: 'Forces a Blood-Moon to be triggered'
+
+permissions:
+  bloodmoon.setequipement:
+    description: 'Allows you to use the /setequipement command'
+  bloodmoon.trigger:
+    description: 'Allows you to use the /trigger command'
+
+
+
+

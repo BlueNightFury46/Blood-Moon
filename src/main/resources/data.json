@@ -1,0 +1,96 @@
+{
+  "HELMET": {
+    "material_name": "NETHERITE_HELMET",
+    "enchantments": [
+      {
+        "ENCHANTMENT": "minecraft:binding_curse",
+        "LEVEL": 1
+      },
+      {
+        "ENCHANTMENT": "minecraft:vanishing_curse",
+        "LEVEL": 1
+      }
+    ]
+  },
+  "CHESTPLATE": {
+    "material_name": "GOLDEN_CHESTPLATE",
+    "enchantments": [
+      {
+        "ENCHANTMENT": "minecraft:binding_curse",
+        "LEVEL": 1
+      },
+      {
+        "ENCHANTMENT": "minecraft:protection",
+        "LEVEL": 4
+      },
+      {
+        "ENCHANTMENT": "minecraft:vanishing_curse",
+        "LEVEL": 1
+      }
+    ]
+  },
+  "LEGGINGS": {
+    "material_name": "IRON_LEGGINGS",
+    "enchantments": [
+      {
+        "ENCHANTMENT": "minecraft:binding_curse",
+        "LEVEL": 1
+      },
+      {
+        "ENCHANTMENT": "minecraft:protection",
+        "LEVEL": 4
+      },
+      {
+        "ENCHANTMENT": "minecraft:vanishing_curse",
+        "LEVEL": 1
+      }
+    ]
+  },
+  "BOOTS": {
+    "material_name": "DIAMOND_BOOTS",
+    "enchantments": [
+      {
+        "ENCHANTMENT": "minecraft:binding_curse",
+        "LEVEL": 1
+      },
+      {
+        "ENCHANTMENT": "minecraft:protection",
+        "LEVEL": 1
+      },
+      {
+        "ENCHANTMENT": "minecraft:vanishing_curse",
+        "LEVEL": 1
+      }
+    ]
+  },
+  "MAINHAND": {
+    "material_name": "WOODEN_SWORD",
+    "enchantments": [
+      {
+        "ENCHANTMENT": "minecraft:binding_curse",
+        "LEVEL": 1
+      },
+      {
+        "ENCHANTMENT": "minecraft:sharpness",
+        "LEVEL": 5
+      },
+      {
+        "ENCHANTMENT": "minecraft:knockback",
+        "LEVEL": 2
+      },
+      {
+        "ENCHANTMENT": "minecraft:vanishing_curse",
+        "LEVEL": 1
+      }
+    ]
+  },
+  "OFFHAND": {
+    "material_name": "AIR",
+    "enchantments": [
+      {
+        "ENCHANTMENT": "minecraft:binding_curse",
+        "LEVEL": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+#A percentage chance, without the % symbol
+bloodmoon-chance: 50.0
+#I recommend you leave this as true...
+do-bloodmoons: true
+messages:
+  blood-moon-chat-message: '§4As the blood moon rises the countless monsters band together, you encounter mobs with stronger gear...§4'
+  blood-moon-title-message: '§cThe Blood Moon Rises Once Again!§c'
+  blood-moon-subtitle-message: '§4Mobs you find will have stronger armour§4'
