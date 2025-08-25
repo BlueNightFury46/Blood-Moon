@@ -12,10 +12,13 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
+import java.util.Objects;
 
 public class MoonEntitySpawnEv implements Listener {
 
@@ -123,27 +126,40 @@ public class MoonEntitySpawnEv implements Listener {
 
 
         if(isValidHelmet(e)){
-           e.getEquipment().setHelmet(BloodMoon.data.HELMET.toItemStack());
+           Objects.requireNonNull(e.getEquipment()).setHelmet(BloodMoon.data.HELMET.toItemStack());
+           e.getEquipment().setHelmetDropChance(0.0f);
        }
 
        if(isValidChestplate(e)){
-           e.getEquipment().setChestplate(BloodMoon.data.CHESTPLATE.toItemStack());
+           Objects.requireNonNull(e.getEquipment()).setChestplate(BloodMoon.data.CHESTPLATE.toItemStack());
+           e.getEquipment().setChestplateDropChance(0.0f);
+
        }
 
         if(isValidLeggings(e)){
-            e.getEquipment().setLeggings(BloodMoon.data.LEGGINGS.toItemStack());
+            Objects.requireNonNull(e.getEquipment()).setLeggings(BloodMoon.data.LEGGINGS.toItemStack());
+            e.getEquipment().setLeggingsDropChance(0.0f);
+
+
         }
 
         if(isValidBoots(e)){
-            e.getEquipment().setBoots(BloodMoon.data.BOOTS.toItemStack());
+            Objects.requireNonNull(e.getEquipment()).setBoots(BloodMoon.data.BOOTS.toItemStack());
+            e.getEquipment().setBootsDropChance(0.0f);
+
         }
 
         if(isValidMainhand(e)){
-            e.getEquipment().setItemInMainHand(BloodMoon.data.MAINHAND.toItemStack());
+            Objects.requireNonNull(e.getEquipment()).setItemInMainHand(BloodMoon.data.MAINHAND.toItemStack());
+            e.getEquipment().setItemInMainHandDropChance(0.0f);
+
         }
 
         if(isValidOffhand(e)){
-            e.getEquipment().setItemInOffHand(BloodMoon.data.OFFHAND.toItemStack());
+            Objects.requireNonNull(e.getEquipment()).setItemInOffHand(BloodMoon.data.OFFHAND.toItemStack());
+            e.getEquipment().setItemInOffHandDropChance(0.0f);
+
+
         }
 
 

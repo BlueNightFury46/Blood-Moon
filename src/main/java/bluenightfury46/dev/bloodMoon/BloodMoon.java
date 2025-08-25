@@ -1,19 +1,12 @@
 package bluenightfury46.dev.bloodMoon;
 
 import bluenightfury46.dev.bloodMoon.events.MoonEntitySpawnEv;
-import bluenightfury46.dev.bloodMoon.json.JsonItemstack;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 public final class BloodMoon extends JavaPlugin {
@@ -35,17 +28,40 @@ public final class BloodMoon extends JavaPlugin {
         // Plugin startup logic
 
         plugin = this;
+
+
+       loadConfig();
+
+
+
+        getCommand("setequipement").setExecutor(new MoonCommands());
+        getCommand("setequipement").setTabCompleter(new MoonTabComplete());
+
+        getCommand("reload-bloodmoon").setExecutor(new ReloadCommand());
+
+        getCommand("trigger").setExecutor(new TriggerBloodMoon());
+        getCommand("trigger").setTabCompleter(new MoonTabComplete());
+        Bukkit.getPluginManager().registerEvents(new MoonEntitySpawnEv(), this);
+
+
+
+
+
+
+
+    }
+
+
+    void loadConfig(){
         File file = new File(getDataFolder(), "data.json");
-     //   data = Moon.jsonInit(file);
-         data = Moon.jsonInit(file);
+        //   data = Moon.jsonInit(file);
+        data = Moon.jsonInit(file);
 
 
 
         this.saveDefaultConfig();
 
-
-
-        BLOODMOON_CHANCE = this.getConfig().getInt("bloodmoon-chance");
+        BLOODMOON_CHANCE = this.getConfig().getDouble("bloodmoon-chance");
         if(BLOODMOON_CHANCE <= 0){
             BLOODMOON_CHANCE = 1;
             this.getLogger().warning("bloodmoon-chance value can not be less than, or equal to zero! Defaulting to 1. If this is a mistake, please modify the config.yml and change the value back to an appropriate value");
@@ -54,6 +70,9 @@ public final class BloodMoon extends JavaPlugin {
             BLOODMOON_CHANCE = 100;
             this.getLogger().warning("bloodmoon-chance value can not greater than 100! Defaulting to 100. If this is a mistake, please modify the config.yml and change the value back to an appropriate value");
         }
+
+
+
 
 
 
@@ -78,21 +97,9 @@ public final class BloodMoon extends JavaPlugin {
 
 
 
-
-        getCommand("setequipement").setExecutor(new MoonCommands());
-        getCommand("setequipement").setTabCompleter(new MoonTabComplete());
-
-        getCommand("trigger").setExecutor(new TriggerBloodMoon());
-        getCommand("trigger").setTabCompleter(new MoonTabComplete());
-        Bukkit.getPluginManager().registerEvents(new MoonEntitySpawnEv(), this);
-
-
-
-
-
-
-
     }
+
+
 
     @Override
     public void onDisable() {

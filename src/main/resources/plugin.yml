@@ -1,5 +1,5 @@
 name: BloodMoon
-version: '1.0'
+version: '1.1'
 main: bluenightfury46.dev.bloodMoon.BloodMoon
 api-version: '1.21'
 authors: [ BlueNightFury46 ]
@@ -11,12 +11,16 @@ commands:
 
   trigger:
     description: 'Forces a Blood-Moon to be triggered'
+  reload-bloodmoon:
+    description: 'Reloads the plugin'
 
 permissions:
   bloodmoon.setequipement:
     description: 'Allows you to use the /setequipement command'
   bloodmoon.trigger:
     description: 'Allows you to use the /trigger command'
+  bloodmoon.reload:
+    description: 'Allows you to use the /reload-bloodmoon command'
 
 
 
