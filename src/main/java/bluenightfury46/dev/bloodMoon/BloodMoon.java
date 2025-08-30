@@ -44,6 +44,8 @@ public final class BloodMoon extends JavaPlugin {
         getCommand("trigger").setExecutor(new TriggerBloodMoon());
         getCommand("trigger").setTabCompleter(new MoonTabComplete());
         Bukkit.getPluginManager().registerEvents(new MoonEntitySpawnEv(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockBedStuff(), this);
+
 
 
 
