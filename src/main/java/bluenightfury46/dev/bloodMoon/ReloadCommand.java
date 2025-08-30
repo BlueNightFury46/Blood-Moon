@@ -50,6 +50,14 @@ public class ReloadCommand implements CommandExecutor {
             }
 
 
+        try {
+            BloodMoon.plugin.BLOODMOON_ALLOWSLEEP = BloodMoon.plugin.getConfig().getBoolean("allow-sleep");
+        }catch(NullPointerException e){
+            BloodMoon.plugin.getLogger().warning("WARNING! allow-sleep in the config.yml is missing, please add it... Defaulting to false");
+            BloodMoon.plugin.BLOODMOON_ALLOWSLEEP = false;
+        }
+
+
            /* try{
                 double CONFIG_DOUBLE_DROPCHANCE = BloodMoon.plugin.getConfig().getDouble("mob-dropchance");
 

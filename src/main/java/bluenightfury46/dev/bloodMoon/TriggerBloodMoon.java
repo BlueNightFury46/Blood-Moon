@@ -28,8 +28,7 @@ public class TriggerBloodMoon implements CommandExecutor {
         }
 
         if(!BloodMoon.DO_BLOODMOONS){
-            commandSender.sendMessage(ChatColor.RED+"Blood Moons are currently disabled in the config.yml...");
-            return true;
+            commandSender.sendMessage(ChatColor.YELLOW+"Warning! Natural Blood moons are currently disabled in the config.yml...");
         }
 
         if(args.length>0){

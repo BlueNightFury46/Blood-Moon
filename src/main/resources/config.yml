@@ -2,6 +2,8 @@
 bloodmoon-chance: 50.0
 #I recommend you leave this as true...
 do-bloodmoons: true
+#Allow players to sleep during a blood moon
+allow-sleep: false
 messages:
   blood-moon-chat-message: '§4As the blood moon rises the countless monsters band together, you encounter mobs with stronger gear...§4'
   blood-moon-title-message: '§cThe Blood Moon Rises Once Again!§c'

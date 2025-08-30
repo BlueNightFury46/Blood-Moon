@@ -245,7 +245,9 @@ public class MoonEntitySpawnEv implements Listener {
                           BloodMoon.ACTIVE_BLOODMOON.remove(world);
 
                           for(LivingEntity livingEntity : world.getLivingEntities()){
-                              removeItems(livingEntity);
+                              if(livingEntity.getType().equals(EntityType.ZOMBIE)) {
+                                  removeItems(livingEntity);
+                              }
 
                           }
 

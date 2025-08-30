@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.yaml.snakeyaml.error.YAMLException;
 
 import java.io.File;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ public final class BloodMoon extends JavaPlugin {
   //static File JSON_FILE = new File(this.getDataFolder() + "\\" + Moon.JSON_FILENAME);
   @NotNull public static ArmourData data;
   @NotNull public static double BLOODMOON_CHANCE = 100.0;
+  @NotNull public static boolean BLOODMOON_ALLOWSLEEP = false;
   @NotNull public static boolean DO_BLOODMOONS = true;
     @NotNull public static String BLOODMOON_SUBTITLE = "§4Mobs you find will have stronger armour§4";
     @NotNull public static String BLOODMOON_TITLE = "§cThe Blood Moon Rises Once Again!§c";
@@ -74,6 +76,14 @@ public final class BloodMoon extends JavaPlugin {
 
 
 
+        try {
+            BLOODMOON_ALLOWSLEEP = getConfig().getBoolean("allow-sleep");
+        }catch(NullPointerException e){
+            BloodMoon.plugin.getLogger().warning("WARNING! allow-sleep in the config.yml is missing, please add it... Defaulting to false");
+            BLOODMOON_ALLOWSLEEP = false;
+        }
+
+
 
 
         BLOODMOON_TITLE = getConfig().getString("messages.blood-moon-title-message");
@@ -104,6 +114,7 @@ public final class BloodMoon extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        this.saveDefaultConfig();
         File JSON_FILE = new File(getDataFolder(),"data.json");
         Moon.jsonSave(data, JSON_FILE);
     }
