@@ -15,11 +15,17 @@ public class BlockBedStuff implements Listener {
 
         if(!BloodMoon.BLOODMOON_ALLOWSLEEP){
 
-            if(BloodMoon.ACTIVE_BLOODMOON.get(e.getPlayer().getWorld())){
+            try {
+                if (BloodMoon.ACTIVE_BLOODMOON.containsKey(e.getPlayer().getWorld())){
+                    if (BloodMoon.ACTIVE_BLOODMOON.get(e.getPlayer().getWorld())) {
 
-                e.getPlayer().sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD +"You can not enter the bed during a blood moon... Good luck");
-                e.setCancelled(true);
+                        e.getPlayer().sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + "You can not enter the bed during a blood moon... Good luck");
+                        e.setCancelled(true);
 
+
+                    }
+            }
+            } catch(NullPointerException ex){
 
             }
 
