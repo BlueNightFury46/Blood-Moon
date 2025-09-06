@@ -1,5 +1,6 @@
 package bluenightfury46.dev.bloodMoon;
 
+import bluenightfury46.dev.bloodMoon.events.BlockBedStuff;
 import bluenightfury46.dev.bloodMoon.events.MoonEntitySpawnEv;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
