@@ -25,6 +25,8 @@ public class ReloadCommand implements CommandExecutor {
 
 
 
+        BloodMoon.plugin.saveDefaultConfig();
+        BloodMoon.plugin.reloadConfig();
 
 
             File JSON_FILE = new File(BloodMoon.plugin.getDataFolder(),"data.json");
