@@ -88,7 +88,7 @@ public class MoonEntitySpawnEv implements Listener {
     }
 
 
-    void removeItems(LivingEntity e){
+    static void removeItems(LivingEntity e){
         if(e.getEquipment().getHelmet().getType().equals(BloodMoon.data.HELMET.toItemStack().getType())){
             e.getEquipment().setHelmet(ItemStack.of(Material.AIR));
 
@@ -179,7 +179,7 @@ public class MoonEntitySpawnEv implements Listener {
 
 
 
-                if (world.getFullTime() < 23000 && world.getFullTime() > 13000) {
+                if (world.getTime() < 23000 && world.getTime() > 13000) {
 
 
                     if(!BloodMoon.ACTIVE_BLOODMOON.containsKey(world)){
@@ -241,17 +241,22 @@ public class MoonEntitySpawnEv implements Listener {
 
                 else {
 
-                      if(BloodMoon.ACTIVE_BLOODMOON.containsKey(world)){
-                          BloodMoon.ACTIVE_BLOODMOON.remove(world);
+                    try {
+                        if (BloodMoon.ACTIVE_BLOODMOON.containsKey(world)) {
+                            BloodMoon.ACTIVE_BLOODMOON.remove(world);
 
-                          for(LivingEntity livingEntity : world.getLivingEntities()){
-                              if(livingEntity.getType().equals(EntityType.ZOMBIE)) {
-                                  removeItems(livingEntity);
-                              }
+                            for (LivingEntity livingEntity : world.getLivingEntities()) {
+                                if (livingEntity.getType().equals(EntityType.ZOMBIE)) {
+                                    removeItems(livingEntity);
+                                }
 
-                          }
+                            }
 
-                       }
+                        }
+
+                    } catch(NullPointerException e){
+
+                    }
 
 
 
