@@ -11,6 +11,16 @@ import java.util.Scanner;
 public class Moon {
 
 
+    public static void preppify(){
+        BloodMoon.BED_ENTER_FAIL_MESSAGE = "§dYou can not enter a bed during a blood-moon, sorry bestie...✨§d";
+        BloodMoon.BLOODMOON_SUBTITLE = "§8The preppy moon slays once again ✨§8";
+        BloodMoon.BLOODMOON_TITLE = "§dPreppy!§d";
+        BloodMoon.BLOODMOON_CHATMESSAGE = "§d§d🎀Yars slay queen!!!✨§d";
+    }
+
+
+
+
 
 
 
