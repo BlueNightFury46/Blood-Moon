@@ -8,3 +8,6 @@ messages:
   blood-moon-chat-message: '§4As the blood moon rises the countless monsters band together, you encounter mobs with stronger gear...§4'
   blood-moon-title-message: '§cThe Blood Moon Rises Once Again!§c'
   blood-moon-subtitle-message: '§4Mobs you find will have stronger armour§4'
+
+  # This is the message that the player gets when they attempt to enter a bed during a blood moon if allow-sleep is false
+  bloodmoon-bedenter: '§4§lYou can not enter the bed during a blood moon... Good luck§l§4'
