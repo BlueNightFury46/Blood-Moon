@@ -3,6 +3,7 @@ package bluenightfury46.dev.bloodMoon;
 import bluenightfury46.dev.bloodMoon.events.BlockBedStuff;
 import bluenightfury46.dev.bloodMoon.events.MoonEntitySpawnEv;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +24,7 @@ public final class BloodMoon extends JavaPlugin {
     @NotNull public static String BLOODMOON_SUBTITLE = "§4Mobs you find will have stronger armour§4";
     @NotNull public static String BLOODMOON_TITLE = "§cThe Blood Moon Rises Once Again!§c";
     @NotNull public static String BLOODMOON_CHATMESSAGE = "§4As the blood moon rises the countless monsters band together, you encounter mobs with stronger gear...§4";
+    @NotNull public static String BED_ENTER_FAIL_MESSAGE = (ChatColor.DARK_RED + "" + ChatColor.BOLD + "You can not enter the bed during a blood moon... Good luck");
   @NotNull public static HashMap<World, Boolean> ACTIVE_BLOODMOON = new HashMap<>();
 
 
@@ -79,12 +81,26 @@ public final class BloodMoon extends JavaPlugin {
 
 
 
+        //NEW AS OF VERSION 1.2... TRY CATCH EXISTS IF THE CONFIG IS OLD
         try {
             BLOODMOON_ALLOWSLEEP = getConfig().getBoolean("allow-sleep");
         }catch(NullPointerException e){
             BloodMoon.plugin.getLogger().warning("WARNING! allow-sleep in the config.yml is missing, please add it... Defaulting to false");
             BLOODMOON_ALLOWSLEEP = false;
         }
+        //1.2 END
+
+
+        //NEW CONFIG OPTION AS OF VERSION 1.2.1, EXISTS IN THE EVENT OF AN OLD CONFIG
+        try{
+            BED_ENTER_FAIL_MESSAGE = getConfig().getString("messages.bloodmoon-bedenter");
+        } catch(NullPointerException e){
+            //Check is probably redundant, but I'm not risking it in case getConfig returns null, or something
+            BloodMoon.plugin.getLogger().warning("WARNING! messages.bloodmoon-bedenter in the config.yml is missing, please add it... Applying default value");
+            BED_ENTER_FAIL_MESSAGE = (ChatColor.DARK_RED + "" + ChatColor.BOLD + "You can not enter the bed during a blood moon... Good luck");
+        }
+        //1.2.1 END
+
 
 
 
@@ -96,6 +112,8 @@ public final class BloodMoon extends JavaPlugin {
         BLOODMOON_SUBTITLE = getConfig().getString("messages.blood-moon-subtitle-message");
         BLOODMOON_CHATMESSAGE = getConfig().getString("messages.blood-moon-chat-message");
 
+
+        //Weird check for something that probably doesn't work? It doesn't break anything though so I'm not changing it
         DO_BLOODMOONS = getConfig().getBoolean("do-bloodmoons");
         try {
             if (DO_BLOODMOONS && !DO_BLOODMOONS) {

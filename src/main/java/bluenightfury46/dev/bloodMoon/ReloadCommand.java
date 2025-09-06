@@ -52,12 +52,23 @@ public class ReloadCommand implements CommandExecutor {
             }
 
 
+        //NEW AS OF 1.2
         try {
             BloodMoon.plugin.BLOODMOON_ALLOWSLEEP = BloodMoon.plugin.getConfig().getBoolean("allow-sleep");
         }catch(NullPointerException e){
             BloodMoon.plugin.getLogger().warning("WARNING! allow-sleep in the config.yml is missing, please add it... Defaulting to false");
             BloodMoon.plugin.BLOODMOON_ALLOWSLEEP = false;
         }
+
+        //NEW CONFIG OPTION AS OF VERSION 1.2.1, EXISTS IN THE EVENT OF AN OLD CONFIG
+        try{
+            BloodMoon.BED_ENTER_FAIL_MESSAGE = BloodMoon.plugin.getConfig().getString("messages.bloodmoon-bedenter");
+        } catch(NullPointerException e){
+            //Check is probably redundant, but I'm not risking it in case getConfig returns null, or something
+            BloodMoon.plugin.getLogger().warning("WARNING! messages.bloodmoon-bedenter in the config.yml is missing, please add it... Applying default value");
+            BloodMoon.BED_ENTER_FAIL_MESSAGE = (ChatColor.DARK_RED + "" + ChatColor.BOLD + "You can not enter the bed during a blood moon... Good luck");
+        }
+        //1.2.1 END
 
 
            /* try{
