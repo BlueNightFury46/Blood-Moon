@@ -1,5 +1,5 @@
 name: BloodMoon
-version: '1.4-DEV'
+version: '1.4'
 main: bluenightfury46.dev.bloodMoon.BloodMoon
 api-version: '1.21'
 authors: [ BlueNightFury46 ]

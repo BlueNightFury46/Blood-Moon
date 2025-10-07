@@ -1,6 +1,8 @@
 package bluenightfury46.dev.bloodMoon.gui;
 
 import bluenightfury46.dev.bloodMoon.BloodMoon;
+import org.apache.commons.lang3.ObjectUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
@@ -27,6 +29,11 @@ public class EquipmentGUI {
 
     public static final int MAINHAND_POS = (INVENTORY_COLUMNS*1)+5;
     public static final int OFFHAND_POS = (INVENTORY_COLUMNS*1)+6;
+
+
+
+    public static final int APPLY_POS = (INVENTORY_COLUMNS*1)+8;
+    public static final int CANCEL_POS = (INVENTORY_COLUMNS*2)+8;
 
 
     public static final Material DEFAULT_MATERIAL = Material.WHITE_STAINED_GLASS;
@@ -155,11 +162,14 @@ public class EquipmentGUI {
 
      public static void reloadItems(){
          inventory.setItem(HELMET_POS,genGUIItem(BloodMoon.data.HELMET.toItemStack().getType(), 1, "Helmet", "Set the blood moon helmet"));
-         inventory.setItem(CHESTPLATE_POS,genGUIItem(BloodMoon.data.CHESTPLATE.toItemStack().getType(), 1, "Chestplate", "test"));
-         inventory.setItem(LEGGINGS_POS,genGUIItem(BloodMoon.data.CHESTPLATE.toItemStack().getType(), 1, "Leggings", "test"));
-         inventory.setItem(BOOTS_POS,genGUIItem(BloodMoon.data.CHESTPLATE.toItemStack().getType(), 1, "Boots", "test"));
-         inventory.setItem(MAINHAND_POS,genGUIItem(BloodMoon.data.CHESTPLATE.toItemStack().getType(), 1, "Mainhand", "test"));
-         inventory.setItem(OFFHAND_POS,genGUIItem(BloodMoon.data.CHESTPLATE.toItemStack().getType(), 1, "Offhand", "test"));
+         inventory.setItem(CHESTPLATE_POS,genGUIItem(BloodMoon.data.CHESTPLATE.toItemStack().getType(), 1, "Chestplate", "Set the blood moon chestplate"));
+         inventory.setItem(LEGGINGS_POS,genGUIItem(BloodMoon.data.LEGGINGS.toItemStack().getType(), 1, "Leggings", "Set the blood moon leggings"));
+         inventory.setItem(BOOTS_POS,genGUIItem(BloodMoon.data.BOOTS.toItemStack().getType(), 1, "Boots", "Set the blood moon boots"));
+         inventory.setItem(MAINHAND_POS,genGUIItem(BloodMoon.data.MAINHAND.toItemStack().getType(), 1, "Mainhand", "Set the blood moon mainhand"));
+         inventory.setItem(OFFHAND_POS,genGUIItem(BloodMoon.data.OFFHAND.toItemStack().getType(), 1, "Offhand", "Set the blood moon offhand"));
+
+         inventory.setItem(APPLY_POS,genGUIItem(Material.LIME_STAINED_GLASS, 1, (ChatColor.GREEN+"Apply"), "Set the blood moon mainhand"));
+         inventory.setItem(CANCEL_POS,genGUIItem(Material.BARRIER, 1, (ChatColor.RED+"Cancel"), "Set the blood moon offhand"));
 
      }
 
@@ -174,7 +184,7 @@ public class EquipmentGUI {
     public static ItemStack genGUIItem(@NotNull Material m, final int count, String name, String...Lore){
         ItemStack itemStack = new ItemStack(m, count);
 
-        if (!itemStack.getType().isAir() || itemStack.getType()==null) {
+        if (itemStack.getType().isAir() || itemStack.getType()==null) {
             itemStack = new ItemStack(DEFAULT_MATERIAL, count);
         }
 
@@ -188,6 +198,16 @@ public class EquipmentGUI {
 
         } catch(NullPointerException e){
             itemStack.setType(DEFAULT_MATERIAL);
+            try{
+                ItemMeta meta = itemStack.getItemMeta();
+
+                meta.setItemName(name);
+                meta.setLore(List.of(Lore));
+
+                itemStack.setItemMeta(meta);
+            }catch(NullPointerException ex){
+
+            }
 
         }
 
