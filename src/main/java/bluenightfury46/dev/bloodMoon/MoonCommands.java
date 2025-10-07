@@ -98,7 +98,7 @@ public class MoonCommands implements CommandExecutor {
 
 
         //NEW STUFF
-         Inventory inv = EquipmentGUI.getCONFIG_INVENTORY(player.getServer());
+         Inventory inv = EquipmentGUI.getCONFIG_INVENTORY();
          player.openInventory(inv);
 
 

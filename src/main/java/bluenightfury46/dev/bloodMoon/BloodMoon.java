@@ -2,10 +2,13 @@ package bluenightfury46.dev.bloodMoon;
 
 import bluenightfury46.dev.bloodMoon.events.BlockBedStuff;
 import bluenightfury46.dev.bloodMoon.events.MoonEntitySpawnEv;
+import bluenightfury46.dev.bloodMoon.gui.EquipmentGUI;
 import bluenightfury46.dev.bloodMoon.gui.GUIEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.error.YAMLException;
@@ -37,6 +40,9 @@ public final class BloodMoon extends JavaPlugin {
 
 
        loadConfig();
+       EquipmentGUI.genCONFIG_INVENTORY();
+
+
 
 
 
@@ -138,9 +144,22 @@ public final class BloodMoon extends JavaPlugin {
 
     @Override
     public void onDisable() {
+
         // Plugin shutdown logic
         this.saveDefaultConfig();
         File JSON_FILE = new File(getDataFolder(),"data.json");
         Moon.jsonSave(data, JSON_FILE);
+
+        //1.4 - remove armour
+        for(World world : this.getServer().getWorlds()){
+            for (LivingEntity livingEntity : world.getLivingEntities()) {
+                if (livingEntity.getType().equals(EntityType.ZOMBIE)) {
+                    MoonEntitySpawnEv.removeItems(livingEntity);
+                }
+
+            }
+        }
+
+        //END OF 1.4
     }
 }

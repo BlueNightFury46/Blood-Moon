@@ -88,7 +88,7 @@ public class MoonEntitySpawnEv implements Listener {
     }
 
 
-    static void removeItems(LivingEntity e){
+    public static void removeItems(LivingEntity e){
         if(e.getEquipment().getHelmet().getType().equals(BloodMoon.data.HELMET.toItemStack().getType())){
             e.getEquipment().setHelmet(ItemStack.of(Material.AIR));
 
