@@ -2,6 +2,7 @@ package bluenightfury46.dev.bloodMoon;
 
 import bluenightfury46.dev.bloodMoon.events.BlockBedStuff;
 import bluenightfury46.dev.bloodMoon.events.MoonEntitySpawnEv;
+import bluenightfury46.dev.bloodMoon.gui.GUIEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -46,9 +47,12 @@ public final class BloodMoon extends JavaPlugin {
 
         getCommand("trigger").setExecutor(new TriggerBloodMoon());
         getCommand("trigger").setTabCompleter(new MoonTabComplete());
+
         Bukkit.getPluginManager().registerEvents(new MoonEntitySpawnEv(), this);
         Bukkit.getPluginManager().registerEvents(new BlockBedStuff(), this);
 
+        //1.4
+        Bukkit.getPluginManager().registerEvents(new GUIEvents(), this);
 
 
 

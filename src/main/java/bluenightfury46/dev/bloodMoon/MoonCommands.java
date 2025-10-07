@@ -6,6 +6,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import bluenightfury46.dev.bloodMoon.gui.*;
 
@@ -41,12 +43,11 @@ public class MoonCommands implements CommandExecutor {
             commandSender.sendMessage(ChatColor.RED + "You don't have permission to use this command...");
             return true;
         }
-
+        Player player = ((Player) commandSender).getPlayer();
 
 
         if(args.length>0) {
 
-            Player player = ((Player) commandSender).getPlayer();
 
 
             if (args[ITEM_CATEGORY].toUpperCase().equals(HELMET_ARG)) {
@@ -88,21 +89,24 @@ public class MoonCommands implements CommandExecutor {
                 return true;
             }
 
+            commandSender.sendMessage(COMMAND_HELP);
+            return true;
+
 
 
         }
 
 
         //NEW STUFF
-        if(args.length>=0){
-            EquipmentGUI
-
-        }
+         Inventory inv = EquipmentGUI.getCONFIG_INVENTORY(player.getServer());
+         player.openInventory(inv);
 
 
+         return true;
 
-        commandSender.sendMessage(COMMAND_HELP);
-        return true;
+
+
+
 
 
     }
