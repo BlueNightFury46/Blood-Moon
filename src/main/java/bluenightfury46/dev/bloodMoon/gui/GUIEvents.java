@@ -33,9 +33,6 @@ public class GUIEvents implements Listener {
             return;
         }
 
-        if(!e.getWhoClicked().isOp()){
-            return;
-        }
 
 
         try{
@@ -50,6 +47,10 @@ public class GUIEvents implements Listener {
 
 
             e.setCancelled(true);
+
+        if(!e.getWhoClicked().isOp()){
+            return;
+        }
 
         Material item = e.getCurrentItem().getType();
 
