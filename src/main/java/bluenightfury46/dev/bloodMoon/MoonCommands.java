@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import bluenightfury46.dev.bloodMoon.gui.*;
 
 public class MoonCommands implements CommandExecutor {
 
@@ -88,6 +89,13 @@ public class MoonCommands implements CommandExecutor {
             }
 
 
+
+        }
+
+
+        //NEW STUFF
+        if(args.length>=0){
+            EquipmentGUI
 
         }
 
