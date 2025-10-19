@@ -161,15 +161,15 @@ public class EquipmentGUI {
     }
 
      public static void reloadItems(){
-         inventory.setItem(HELMET_POS,genGUIItem(BloodMoon.data.HELMET.toItemStack().getType(), 1, "Helmet", "Set the blood moon helmet"));
-         inventory.setItem(CHESTPLATE_POS,genGUIItem(BloodMoon.data.CHESTPLATE.toItemStack().getType(), 1, "Chestplate", "Set the blood moon chestplate"));
-         inventory.setItem(LEGGINGS_POS,genGUIItem(BloodMoon.data.LEGGINGS.toItemStack().getType(), 1, "Leggings", "Set the blood moon leggings"));
-         inventory.setItem(BOOTS_POS,genGUIItem(BloodMoon.data.BOOTS.toItemStack().getType(), 1, "Boots", "Set the blood moon boots"));
-         inventory.setItem(MAINHAND_POS,genGUIItem(BloodMoon.data.MAINHAND.toItemStack().getType(), 1, "Mainhand", "Set the blood moon mainhand"));
-         inventory.setItem(OFFHAND_POS,genGUIItem(BloodMoon.data.OFFHAND.toItemStack().getType(), 1, "Offhand", "Set the blood moon offhand"));
+         inventory.setItem(HELMET_POS,genGUIItem(BloodMoon.data.HELMET.toItemStack().getType(), 1, "Helmet", ChatColor.GRAY+"Set the blood moon helmet"));
+         inventory.setItem(CHESTPLATE_POS,genGUIItem(BloodMoon.data.CHESTPLATE.toItemStack().getType(), 1, ChatColor.GRAY+"Chestplate", "Set the blood moon chestplate"));
+         inventory.setItem(LEGGINGS_POS,genGUIItem(BloodMoon.data.LEGGINGS.toItemStack().getType(), 1, "Leggings", ChatColor.GRAY+"Set the blood moon leggings"));
+         inventory.setItem(BOOTS_POS,genGUIItem(BloodMoon.data.BOOTS.toItemStack().getType(), 1, "Boots", ChatColor.GRAY+"Set the blood moon boots"));
+         inventory.setItem(MAINHAND_POS,genGUIItem(BloodMoon.data.MAINHAND.toItemStack().getType(), 1, "Mainhand", ChatColor.GRAY+"Set the blood moon mainhand"));
+         inventory.setItem(OFFHAND_POS,genGUIItem(BloodMoon.data.OFFHAND.toItemStack().getType(), 1, "Offhand", ChatColor.GRAY+"Set the blood moon offhand"));
 
-         inventory.setItem(APPLY_POS,genGUIItem(Material.LIME_STAINED_GLASS, 1, (ChatColor.GREEN+"Apply"), "Set the blood moon mainhand"));
-         inventory.setItem(CANCEL_POS,genGUIItem(Material.BARRIER, 1, (ChatColor.RED+"Cancel"), "Set the blood moon offhand"));
+         inventory.setItem(APPLY_POS,genGUIItem(Material.LIME_STAINED_GLASS, 1, (ChatColor.GREEN+"Apply"), ChatColor.GRAY+"Applies the current armour selection"));
+         inventory.setItem(CANCEL_POS,genGUIItem(Material.BARRIER, 1, (ChatColor.RED+"Cancel"), ChatColor.GRAY+"Deletes the current armour selection"));
 
      }
 
