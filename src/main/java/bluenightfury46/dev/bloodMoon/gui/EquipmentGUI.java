@@ -47,9 +47,8 @@ public class EquipmentGUI {
 
     public static boolean isHelmet(Material m){
 
-        //TODO add copper for 1.21.9
         switch(m){
-            case LEATHER_HELMET, CHAINMAIL_HELMET, GOLDEN_HELMET, IRON_HELMET, DIAMOND_HELMET, NETHERITE_HELMET, TURTLE_HELMET, PLAYER_HEAD, WITHER_SKELETON_SKULL, SKELETON_SKULL, CREEPER_HEAD, DRAGON_HEAD, ZOMBIE_HEAD -> {
+            case LEATHER_HELMET, CHAINMAIL_HELMET, GOLDEN_HELMET, IRON_HELMET, DIAMOND_HELMET, NETHERITE_HELMET, TURTLE_HELMET, PLAYER_HEAD, WITHER_SKELETON_SKULL, SKELETON_SKULL, CREEPER_HEAD, DRAGON_HEAD, ZOMBIE_HEAD, COPPER_HELMET, COPPER_GOLEM_STATUE -> {
                 return true;
             }
 
@@ -59,9 +58,8 @@ public class EquipmentGUI {
 
     public static boolean isChestplate(Material m){
 
-        //TODO add copper for 1.21.9
         switch(m){
-            case LEATHER_CHESTPLATE, CHAINMAIL_CHESTPLATE, GOLDEN_CHESTPLATE, IRON_CHESTPLATE, DIAMOND_CHESTPLATE, NETHERITE_CHESTPLATE, ELYTRA -> {
+            case LEATHER_CHESTPLATE, CHAINMAIL_CHESTPLATE, GOLDEN_CHESTPLATE, IRON_CHESTPLATE, DIAMOND_CHESTPLATE, NETHERITE_CHESTPLATE, ELYTRA, COPPER_CHESTPLATE -> {
                 return true;
             }
 
@@ -71,9 +69,8 @@ public class EquipmentGUI {
 
     public static boolean isLeggings(Material m){
 
-        //TODO add copper for 1.21.9
         switch(m){
-            case LEATHER_LEGGINGS, CHAINMAIL_LEGGINGS, GOLDEN_LEGGINGS, IRON_LEGGINGS, DIAMOND_LEGGINGS, NETHERITE_LEGGINGS -> {
+            case LEATHER_LEGGINGS, CHAINMAIL_LEGGINGS, GOLDEN_LEGGINGS, IRON_LEGGINGS, DIAMOND_LEGGINGS, NETHERITE_LEGGINGS, COPPER_LEGGINGS -> {
                 return true;
             }
 
@@ -83,9 +80,8 @@ public class EquipmentGUI {
 
     public static boolean isBoots(Material m){
 
-        //TODO add copper for 1.21.9
         switch(m){
-            case LEATHER_BOOTS, CHAINMAIL_BOOTS, GOLDEN_BOOTS, IRON_BOOTS, DIAMOND_BOOTS, NETHERITE_BOOTS -> {
+            case LEATHER_BOOTS, CHAINMAIL_BOOTS, GOLDEN_BOOTS, IRON_BOOTS, DIAMOND_BOOTS, NETHERITE_BOOTS, COPPER_BOOTS -> {
                 return true;
             }
 
