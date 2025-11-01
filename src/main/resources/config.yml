@@ -11,5 +11,7 @@ messages:
 
   # This is the message that the player gets when they attempt to enter a bed during a blood moon if allow-sleep is false
   bloodmoon-bedenter: '§4§lYou can not enter the bed during a blood moon... Good luck§l§4'
+# The worlds you don't want blood moons to occur in
 disabled-worlds:
   - example
+
