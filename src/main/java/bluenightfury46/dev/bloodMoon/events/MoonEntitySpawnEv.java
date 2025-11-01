@@ -18,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class MoonEntitySpawnEv implements Listener {
@@ -179,10 +180,18 @@ public class MoonEntitySpawnEv implements Listener {
 
 
 
+
+
+
+
                 if (world.getTime() < 23000 && world.getTime() > 13000) {
 
 
                     if(!BloodMoon.ACTIVE_BLOODMOON.containsKey(world)){
+
+                        if(isWorldDisabledInConfig(world.getName())){
+                            return;
+                        }
 
                         int max = ((int)Moon.percentChance_to_fractChance(BloodMoon.BLOODMOON_CHANCE));
 
@@ -191,6 +200,8 @@ public class MoonEntitySpawnEv implements Listener {
 
 
                      if((0)==num && getPhase(world)==FULL_MOON){
+
+
 
                          BloodMoon.ACTIVE_BLOODMOON.put(world, true);
 
@@ -274,6 +285,27 @@ public class MoonEntitySpawnEv implements Listener {
             }
 
 
+    }
+
+
+    boolean isWorldDisabledInConfig(String worldname){
+        try {
+            if (BloodMoon.DISABLED_WORLDS == null) {
+                return false;
+            }
+
+
+            for(String world : BloodMoon.DISABLED_WORLDS){
+                if(world.equalsIgnoreCase(worldname)){
+                    return true;
+                }
+
+            }
+
+        } catch (NullPointerException ex){
+            BloodMoon.DISABLED_WORLDS = new ArrayList<>();
+        }
+        return false;
     }
 
 

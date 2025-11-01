@@ -14,7 +14,9 @@ import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.error.YAMLException;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public final class BloodMoon extends JavaPlugin {
 
@@ -31,6 +33,8 @@ public final class BloodMoon extends JavaPlugin {
     @NotNull public static String BED_ENTER_FAIL_MESSAGE = (ChatColor.DARK_RED + "" + ChatColor.BOLD + "You can not enter the bed during a blood moon... Good luck");
   @NotNull public static HashMap<World, Boolean> ACTIVE_BLOODMOON = new HashMap<>();
 
+  @NotNull  public static List<String> DISABLED_WORLDS = new ArrayList<>();
+
 
     @Override
     public void onEnable() {
@@ -38,6 +42,7 @@ public final class BloodMoon extends JavaPlugin {
 
         plugin = this;
 
+        
 
        loadConfig();
        EquipmentGUI.genCONFIG_INVENTORY();
@@ -134,6 +139,23 @@ public final class BloodMoon extends JavaPlugin {
             DO_BLOODMOONS = true;
             getLogger().warning("Warning! do-bloodmoons failed to load... Defaulting to true");
         }
+
+
+        //NEW AS OF 1.5
+
+        try {
+            if (!getConfig().isSet("disabled-worlds")) {
+                getLogger().severe("Error! disabled-worlds is not set... Unexpected errors may occur");
+            } else {
+
+                DISABLED_WORLDS = getConfig().getStringList("disabled-worlds");
+
+            }
+        } catch(NullPointerException ex){
+            getLogger().warning("Warning! disabled-worlds failed to load...");
+
+        }
+
 
 
 

@@ -109,6 +109,21 @@ public class ReloadCommand implements CommandExecutor {
                 commandSender.sendMessage(ChatColor.YELLOW+"Warning! do-bloodmoons failed to load... Defaulting to true");
             }
 
+        //NEW AS OF 1.5
+
+        try {
+            if (!BloodMoon.plugin.getConfig().isSet("disabled-worlds")) {
+                BloodMoon.plugin.getLogger().severe("Error! disabled-worlds is not set... Unexpected errors may occur");
+            } else {
+
+                BloodMoon.DISABLED_WORLDS = BloodMoon.plugin.getConfig().getStringList("disabled-worlds");
+
+            }
+        } catch(NullPointerException ex){
+            BloodMoon.plugin.getLogger().warning("Warning! disabled-worlds failed to load...");
+
+        }
+
             //TODO If anyone ever forks this plugin in the future, make sure to add your name here in the credits
             commandSender.sendMessage(ChatColor.GREEN+"Reloaded " + ChatColor.RED + BloodMoon.plugin.getPluginMeta().getName() + ChatColor.GREEN+" version " + ChatColor.GOLD + BloodMoon.plugin.getPluginMeta().getVersion() + ChatColor.GREEN + " by " + ChatColor.BLUE + "BlueNightFury46");
 

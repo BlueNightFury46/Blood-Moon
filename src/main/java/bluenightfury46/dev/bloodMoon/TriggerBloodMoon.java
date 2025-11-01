@@ -12,6 +12,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class TriggerBloodMoon implements CommandExecutor {
 
     final int WORLD_ARGUMENT = 0;
@@ -22,68 +24,81 @@ public class TriggerBloodMoon implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] args) {
 
-        if(!commandSender.hasPermission("bloodmoon.trigger")){
-            commandSender.sendMessage(ChatColor.RED+"You don't have permission to use that command...");
+        if (!commandSender.hasPermission("bloodmoon.trigger")) {
+            commandSender.sendMessage(ChatColor.RED + "You don't have permission to use that command...");
             return true;
         }
 
-        if(!BloodMoon.DO_BLOODMOONS){
-            commandSender.sendMessage(ChatColor.YELLOW+"Warning! Natural Blood moons are currently disabled in the config.yml...");
+        if (!BloodMoon.DO_BLOODMOONS) {
+            commandSender.sendMessage(ChatColor.YELLOW + "Warning! Natural Blood moons are currently disabled in the config.yml...");
         }
+        if (args.length > 0) {
+            if (args.length > 1) {
 
-        if(args.length>0){
+                for (World world : BloodMoon.plugin.getServer().getWorlds()) {
 
-            for(World world : BloodMoon.plugin.getServer().getWorlds()){
+                    if (world.getName().equalsIgnoreCase(args[WORLD_ARGUMENT])) {
+                        if (isWorldDisabledInConfig(world.getName())) {
+                            commandSender.sendMessage(ChatColor.YELLOW + "Warning! Natural Blood moons are currently disabled in world \"" + args[WORLD_ARGUMENT] + "\"...");
+                            ;
+                        }
+                        world.setFullTime(TIME_MIDNIGHT);
+                        if (!BloodMoon.ACTIVE_BLOODMOON.containsKey(world)) {
+                            BloodMoon.ACTIVE_BLOODMOON.put(world, true);
+                        } else {
+                            BloodMoon.ACTIVE_BLOODMOON.replace(world, true);
 
-                if(world.getName().equalsIgnoreCase(args[WORLD_ARGUMENT])){
-                    world.setFullTime(TIME_MIDNIGHT);
-                    if(!BloodMoon.ACTIVE_BLOODMOON.containsKey(world)){
-                        BloodMoon.ACTIVE_BLOODMOON.put(world, true);
-                    } else {
-                        BloodMoon.ACTIVE_BLOODMOON.replace(world, true);
+                        }
+
+                        for (Player p : world.getPlayers()) {
+                            p.sendMessage(BloodMoon.BLOODMOON_CHATMESSAGE);
+                            p.sendTitle(BloodMoon.BLOODMOON_TITLE, BloodMoon.BLOODMOON_SUBTITLE);
+                            world.playSound(p.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.2f, 1.0f);
+                        }
+
+                        commandSender.sendMessage(ChatColor.BLUE + "Successfully triggered Blood Moon in world " + ChatColor.GOLD + world.getName() + ChatColor.BLUE + "...");
+                        return true;
 
                     }
 
-                    for(Player p : world.getPlayers()){
-                        p.sendMessage(BloodMoon.BLOODMOON_CHATMESSAGE);
-                        p.sendTitle(BloodMoon.BLOODMOON_TITLE, BloodMoon.BLOODMOON_SUBTITLE);
-                        world.playSound(p.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.2f, 1.0f);
-                    }
-
-                    commandSender.sendMessage(ChatColor.BLUE+"Successfully triggered Blood Moon in world " + ChatColor.GOLD+world.getName() + ChatColor.BLUE + "...");
-                    return true;
 
                 }
 
+                commandSender.sendMessage(ChatColor.RED + "Error, world \"" + ChatColor.GOLD + args[WORLD_ARGUMENT] + ChatColor.RED + "\" not found...");
+                return true;
+
 
             }
 
-            commandSender.sendMessage(ChatColor.RED+"Error, world \"" + ChatColor.GOLD + args[WORLD_ARGUMENT]+ ChatColor.RED + "\" not found...");
-            return true;
 
+            if ((commandSender instanceof Player)) {
 
-        }
+                Player player = (Player) commandSender;
 
+                player.getWorld().setFullTime(TIME_MIDNIGHT);
 
-        if((commandSender instanceof Player)){
-            Player player = (Player) commandSender;
+                if (isWorldDisabledInConfig(player.getWorld().getName())) {
+                    commandSender.sendMessage(ChatColor.YELLOW + "Warning! Natural Blood moons are currently disabled in world \"" + args[WORLD_ARGUMENT] + "\"...");
+                    ;
+                }
 
-            player.getWorld().setFullTime(TIME_MIDNIGHT);
-            if(!BloodMoon.ACTIVE_BLOODMOON.containsKey(player.getWorld())){
-            BloodMoon.ACTIVE_BLOODMOON.put(player.getWorld(), true);
-            } else {
-                BloodMoon.ACTIVE_BLOODMOON.replace(player.getWorld(), true);
+                if (!BloodMoon.ACTIVE_BLOODMOON.containsKey(player.getWorld())) {
+                    BloodMoon.ACTIVE_BLOODMOON.put(player.getWorld(), true);
+                } else {
+                    BloodMoon.ACTIVE_BLOODMOON.replace(player.getWorld(), true);
+
+                }
+
+                for (Player p : player.getWorld().getPlayers()) {
+                    p.sendMessage(BloodMoon.BLOODMOON_CHATMESSAGE);
+                    p.sendTitle(BloodMoon.BLOODMOON_TITLE, BloodMoon.BLOODMOON_SUBTITLE);
+                    player.getWorld().playSound(p.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.2f, 1.0f);
+                }
+
+                player.sendMessage(ChatColor.BLUE + "Successfully triggered Blood Moon...");
+                return true;
 
             }
-
-            for(Player p : player.getWorld().getPlayers()){
-                p.sendMessage(BloodMoon.BLOODMOON_CHATMESSAGE);
-                p.sendTitle(BloodMoon.BLOODMOON_TITLE, BloodMoon.BLOODMOON_SUBTITLE);
-                player.getWorld().playSound(p.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.2f, 1.0f);
-            }
-
-            player.sendMessage(ChatColor.BLUE+"Successfully triggered Blood Moon...");
-return true;
 
         } else {
 
@@ -93,5 +108,29 @@ return true;
         }
 
 
+        commandSender.sendMessage(HELP);
+        return true;
+
+
+    }
+
+    boolean isWorldDisabledInConfig(String worldname){
+        try {
+            if (BloodMoon.DISABLED_WORLDS == null) {
+                return false;
+            }
+
+
+            for(String world : BloodMoon.DISABLED_WORLDS){
+                if(world.equalsIgnoreCase(worldname)){
+                    return true;
+                }
+
+            }
+
+        } catch (NullPointerException ex){
+            BloodMoon.DISABLED_WORLDS = new ArrayList<>();
+        }
+        return false;
     }
 }
