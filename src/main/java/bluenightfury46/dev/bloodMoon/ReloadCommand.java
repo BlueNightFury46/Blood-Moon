@@ -1,5 +1,6 @@
 package bluenightfury46.dev.bloodMoon;
 
+import bluenightfury46.dev.bloodMoon.json.random.MoonRandom;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -29,14 +30,35 @@ public class ReloadCommand implements CommandExecutor {
         BloodMoon.plugin.reloadConfig();
 
 
-            File JSON_FILE = new File(BloodMoon.plugin.getDataFolder(),"data.json");
-            Moon.jsonSave(BloodMoon.data, JSON_FILE);
+
 
 
             File file = new File(BloodMoon.plugin.getDataFolder(), "data.json");
-            //   data = Moon.jsonInit(file);
-            BloodMoon.data = Moon.jsonInit(file);
 
+            if(!file.exists()){
+                Moon.jsonSave(BloodMoon.data, file);
+
+            } else {
+                //   data = Moon.jsonInit(file);
+                BloodMoon.data = Moon.jsonInit(file);
+
+                Moon.jsonSave(BloodMoon.data, file);
+            }
+
+
+        //VERSION 1.6
+        File random = new File(BloodMoon.plugin.getDataFolder(), "equipment_pool.json");
+        if(random.exists()) {
+            //   data = Moon.jsonInit(file);
+            BloodMoon.plugin.equipment_pool = MoonRandom.jsonInit(random);
+
+
+            //VERSION 1.6
+            MoonRandom.jsonSave(BloodMoon.plugin.equipment_pool, random);
+        } else {
+            MoonRandom.jsonSave(BloodMoon.plugin.equipment_pool, random);
+
+        }
 
 
             BloodMoon.plugin.saveDefaultConfig();

@@ -1,11 +1,8 @@
 package bluenightfury46.dev.bloodMoon.gui;
 
 import bluenightfury46.dev.bloodMoon.BloodMoon;
-import org.apache.commons.lang3.ObjectUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Server;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -13,11 +10,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class EquipmentGUI {
+public class EquipmentPoolGUI {
 
 //   Inventory CONFIG_INVENTORY;
 
-    public static final int INVENTORY_COLUMNS = 9;
+ /*   public static final int INVENTORY_COLUMNS = 9;
     public static final int INVENTORY_ROWS = 3;
     public static final String INVENTORY_TITLE = "Blood Moon";
 
@@ -34,11 +31,6 @@ public class EquipmentGUI {
 
     public static final int APPLY_POS = (INVENTORY_COLUMNS*1)+8;
     public static final int CANCEL_POS = (INVENTORY_COLUMNS*2)+8;
-
-    public static final int VIEW_POOL = (INVENTORY_COLUMNS*2)+1;
-
-    public static final int ENABLE_POOL = (INVENTORY_COLUMNS*2)+0;
-
 
 
     public static final Material DEFAULT_MATERIAL = Material.WHITE_STAINED_GLASS;
@@ -125,15 +117,6 @@ public class EquipmentGUI {
 
     }
 
-    public static void setEnabledPool(boolean state){
-        if(state==false){
-            inventory.setItem(ENABLE_POOL, genGUIItem(Material.RED_DYE, 1, (ChatColor.RED+"Enable Random Equipment (EXPERIMENTAL)"), ChatColor.GRAY+"Mobs will gain equipment", ChatColor.GRAY + "from a preset list configured", ChatColor.GRAY + "with the /equipmentpool command instead"));
-        } else {
-                inventory.setItem(ENABLE_POOL, genGUIItem(Material.GREEN_DYE, 1, (ChatColor.GREEN+"Disable Random Equipment (EXPERIMENTAL)"), ChatColor.GRAY+"Mobs will gain equipment", ChatColor.GRAY + "from a preset list configured", ChatColor.GRAY + "with the /equipmentpool command instead"));
-
-        }
-    }
-
 
     public static ItemStack getOffhandItem(){
         return inventory.getItem(OFFHAND_POS);
@@ -181,9 +164,6 @@ public class EquipmentGUI {
          inventory.setItem(APPLY_POS,genGUIItem(Material.LIME_STAINED_GLASS, 1, (ChatColor.GREEN+"Apply"), ChatColor.GRAY+"Applies the current armour selection"));
          inventory.setItem(CANCEL_POS,genGUIItem(Material.BARRIER, 1, (ChatColor.RED+"Cancel"), ChatColor.GRAY+"Deletes the current armour selection"));
 
-         setEnabledPool(BloodMoon.equipment_pool.RANDOM_EQUIPMENT);
-         //inventory.setItem(VIEW_POOL,genGUIItem(Material.BARRIER, 1, (ChatColor.GRAY+"View Item Pool (PLACEHOLDER)"), ChatColor.GRAY+"View the item pool GUI"));
-         //TODO implement a gui for this ^
      }
 
     @NotNull public static Inventory getCONFIG_INVENTORY(){
@@ -229,5 +209,5 @@ public class EquipmentGUI {
         return itemStack;
     }
 
-
+*/
 }

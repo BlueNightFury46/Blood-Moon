@@ -1,5 +1,6 @@
 package bluenightfury46.dev.bloodMoon;
 
+import bluenightfury46.dev.bloodMoon.commands.EquipmentPoolCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -44,6 +45,37 @@ public class MoonTabComplete implements TabCompleter {
 
 
                     return list;
+                }
+            }
+        }
+
+        if(command.getName().equalsIgnoreCase("equipmentpool")){
+            if (args.length >= 0) {
+                if (args.length == 1) {
+                    List<String> list = new ArrayList<>();
+                    if (commandSender.isOp() || commandSender.hasPermission("bloodmoon.equipmentpool")) {
+                        list.add("list");
+                        list.add("add");
+
+
+
+                        return list;
+                    }
+                }
+
+                if (args.length == 2) {
+                    List<String> list = new ArrayList<>();
+                    if (commandSender.isOp() || commandSender.hasPermission("bloodmoon.equipmentpool")) {
+                        list.add(MoonCommands.HELMET_ARG);
+                        list.add(MoonCommands.CHESTPLATE_ARG);
+                        list.add(MoonCommands.LEGGINGS_ARG);
+                        list.add(MoonCommands.BOOTS_ARG);
+                        list.add(MoonCommands.MAINHAND_ARG);
+                        list.add(MoonCommands.OFFHAND_ARG);
+
+
+                        return list;
+                    }
                 }
             }
         }

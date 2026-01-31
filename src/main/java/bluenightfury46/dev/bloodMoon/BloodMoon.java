@@ -1,9 +1,12 @@
 package bluenightfury46.dev.bloodMoon;
 
+import bluenightfury46.dev.bloodMoon.commands.EquipmentPoolCommand;
 import bluenightfury46.dev.bloodMoon.events.BlockBedStuff;
 import bluenightfury46.dev.bloodMoon.events.MoonEntitySpawnEv;
 import bluenightfury46.dev.bloodMoon.gui.EquipmentGUI;
 import bluenightfury46.dev.bloodMoon.gui.GUIEvents;
+import bluenightfury46.dev.bloodMoon.json.random.JsonEquipment;
+import bluenightfury46.dev.bloodMoon.json.random.MoonRandom;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -11,7 +14,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
-import org.yaml.snakeyaml.error.YAMLException;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ public final class BloodMoon extends JavaPlugin {
 
   //static File JSON_FILE = new File(this.getDataFolder() + "\\" + Moon.JSON_FILENAME);
   @NotNull public static ArmourData data;
+
+  @NotNull public static JsonEquipment equipment_pool;
   @NotNull public static double BLOODMOON_CHANCE = 100.0;
   @NotNull public static boolean BLOODMOON_ALLOWSLEEP = false;
   @NotNull public static boolean DO_BLOODMOONS = true;
@@ -35,12 +39,17 @@ public final class BloodMoon extends JavaPlugin {
 
   @NotNull  public static List<String> DISABLED_WORLDS = new ArrayList<>();
 
+  @NotNull public static List<Integer> TRACKED_ENTITIES = new ArrayList<>();
+
+  @NotNull public final static boolean VERSION16_BETA = true;
+
 
     @Override
     public void onEnable() {
         // Plugin startup logic
 
         plugin = this;
+
 
         
 
@@ -53,6 +62,10 @@ public final class BloodMoon extends JavaPlugin {
 
         getCommand("setequipement").setExecutor(new MoonCommands());
         getCommand("setequipement").setTabCompleter(new MoonTabComplete());
+
+        getCommand("equipmentpool").setExecutor(new EquipmentPoolCommand());
+        getCommand("equipmentpool").setTabCompleter(new MoonTabComplete());
+
 
         getCommand("reload-bloodmoon").setExecutor(new ReloadCommand());
 
@@ -78,6 +91,11 @@ public final class BloodMoon extends JavaPlugin {
         File file = new File(getDataFolder(), "data.json");
         //   data = Moon.jsonInit(file);
         data = Moon.jsonInit(file);
+
+            //VERSION 1.6
+            File random = new File(getDataFolder(), "equipment_pool.json");
+            //   data = Moon.jsonInit(file);
+            equipment_pool = MoonRandom.jsonInit(random);
 
 
 
@@ -167,15 +185,21 @@ public final class BloodMoon extends JavaPlugin {
     @Override
     public void onDisable() {
 
+
         // Plugin shutdown logic
         this.saveDefaultConfig();
         File JSON_FILE = new File(getDataFolder(),"data.json");
         Moon.jsonSave(data, JSON_FILE);
 
-        //1.4 - remove armour
+        //VERSION 1.6
+        File random = new File(getDataFolder(), "equipment_pool.json");
+        //   data = Moon.jsonInit(file);
+        MoonRandom.jsonSave(equipment_pool, random);
+
+        //1.4 - remove armour -- updated in 1.6
         for(World world : this.getServer().getWorlds()){
             for (LivingEntity livingEntity : world.getLivingEntities()) {
-                if (livingEntity.getType().equals(EntityType.ZOMBIE)) {
+                if (livingEntity.getType().equals(EntityType.ZOMBIE) && BloodMoon.TRACKED_ENTITIES.contains(livingEntity.getEntityId())) {
                     MoonEntitySpawnEv.removeItems(livingEntity);
                 }
 

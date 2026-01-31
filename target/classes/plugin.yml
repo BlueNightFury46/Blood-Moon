@@ -1,5 +1,5 @@
 name: BloodMoon
-version: '1.5'
+version: '1.6'
 main: bluenightfury46.dev.bloodMoon.BloodMoon
 api-version: '1.21'
 authors: [ BlueNightFury46 ]
@@ -8,6 +8,8 @@ website: bluenightfury46.dev
 commands:
   setequipement:
     description: 'Sets the equipement that entities get during Blood-Moons'
+  equipmentpool:
+    description: 'Allows you to manage the items in the equipment pool'
 
   trigger:
     description: 'Forces a Blood-Moon to be triggered'
@@ -17,9 +19,12 @@ commands:
       - bloodmoon-reload
       - reload
 
+
 permissions:
   bloodmoon.setequipement:
     description: 'Allows you to use the /setequipement command'
+  bloodmoon.equipmentpool:
+    description: 'Allows you to use the /equipmentpool command'
   bloodmoon.trigger:
     description: 'Allows you to use the /trigger command'
   bloodmoon.reload:

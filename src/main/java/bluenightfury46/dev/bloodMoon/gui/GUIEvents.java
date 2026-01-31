@@ -99,6 +99,19 @@ public class GUIEvents implements Listener {
                     return;
                 }}
 
+                case ENABLE_POOL -> {
+                    if(BloodMoon.equipment_pool.RANDOM_EQUIPMENT==true) {
+                        EquipmentGUI.setEnabledPool(false);
+                        BloodMoon.equipment_pool.RANDOM_EQUIPMENT = false;
+                    } else {
+
+                            EquipmentGUI.setEnabledPool(true);
+                            BloodMoon.equipment_pool.RANDOM_EQUIPMENT = true;
+
+                    }
+                    return;
+                }
+
 
 
 
@@ -132,6 +145,8 @@ public class GUIEvents implements Listener {
                     EquipmentGUI.setBoots(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Boots", "Set the blood moon boots"));
                     EquipmentGUI.setMainhand(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Mainhand", "Set the blood moon mainhand"));
                     EquipmentGUI.setOffhand(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Offhand", "Set the blood moon offhand"));
+                    EquipmentGUI.setEnabledPool(false);
+                    BloodMoon.equipment_pool.RANDOM_EQUIPMENT = false;
                     return;
                 }
 

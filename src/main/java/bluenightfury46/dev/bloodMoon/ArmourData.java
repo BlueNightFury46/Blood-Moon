@@ -14,9 +14,9 @@ public class ArmourData {
     @NotNull public JsonItemstack MAINHAND;
     @NotNull public JsonItemstack OFFHAND;
 
-    static final JsonItemstack AIR = new JsonItemstack(new ItemStack(Material.AIR));
+    public static final JsonItemstack AIR = new JsonItemstack(new ItemStack(Material.AIR));
 
-    ArmourData(JsonItemstack H, JsonItemstack C, JsonItemstack L, JsonItemstack B, JsonItemstack M, JsonItemstack O){
+    public ArmourData(JsonItemstack H, JsonItemstack C, JsonItemstack L, JsonItemstack B, JsonItemstack M, JsonItemstack O){
         HELMET = H;
         CHESTPLATE = C;
         LEGGINGS = L;

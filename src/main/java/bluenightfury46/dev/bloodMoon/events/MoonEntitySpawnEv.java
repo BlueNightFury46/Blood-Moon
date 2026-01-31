@@ -1,7 +1,9 @@
 package bluenightfury46.dev.bloodMoon.events;
 
+import bluenightfury46.dev.bloodMoon.ArmourData;
 import bluenightfury46.dev.bloodMoon.BloodMoon;
 import bluenightfury46.dev.bloodMoon.Moon;
+import bluenightfury46.dev.bloodMoon.json.random.MoonRandom;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -16,6 +18,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.html.HTMLAreaElement;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -90,79 +93,101 @@ public class MoonEntitySpawnEv implements Listener {
 
 
     public static void removeItems(LivingEntity e){
-        if(e.getEquipment().getHelmet().getType().equals(BloodMoon.data.HELMET.toItemStack().getType())){
             e.getEquipment().setHelmet(ItemStack.of(Material.AIR));
 
-        }
 
-        if(e.getEquipment().getChestplate().getType().equals(BloodMoon.data.CHESTPLATE.toItemStack().getType())){
+
             e.getEquipment().setChestplate(ItemStack.of(Material.AIR));
             //TODO Add Enchantment check
 
-        }
 
-        if(e.getEquipment().getLeggings().getType().equals(BloodMoon.data.LEGGINGS.toItemStack().getType())){
+
             e.getEquipment().setLeggings(ItemStack.of(Material.AIR));
 
-        }
 
-        if(e.getEquipment().getBoots().getType().equals(BloodMoon.data.BOOTS.toItemStack().getType())){
+
             e.getEquipment().setBoots(ItemStack.of(Material.AIR));
 
-        }
 
-        if(e.getEquipment().getItemInMainHand().getType().equals(BloodMoon.data.MAINHAND.toItemStack().getType())){
+
             e.getEquipment().setItemInMainHand(ItemStack.of(Material.AIR));
 
-        }
 
-        if(e.getEquipment().getItemInOffHand().getType().equals(BloodMoon.data.OFFHAND.toItemStack().getType())){
+
             e.getEquipment().setItemInOffHand(ItemStack.of(Material.AIR));
-
-        }
     }
 
 
     void BLOODMOON_ACTIVATE(LivingEntity e){
 
+        ItemStack HELMET = BloodMoon.data.HELMET.toItemStack();
+        ItemStack CHESTPLATE = BloodMoon.data.CHESTPLATE.toItemStack();
+        ItemStack LEGGINGS = BloodMoon.data.LEGGINGS.toItemStack();
+        ItemStack BOOTS = BloodMoon.data.BOOTS.toItemStack();
+        ItemStack MAINHAND = BloodMoon.data.MAINHAND.toItemStack();
+        ItemStack OFFHAND = BloodMoon.data.OFFHAND.toItemStack();
 
-        if(isValidHelmet(e)){
-           Objects.requireNonNull(e.getEquipment()).setHelmet(BloodMoon.data.HELMET.toItemStack());
-           e.getEquipment().setHelmetDropChance(0.0f);
-       }
+        if(BloodMoon.equipment_pool.RANDOM_EQUIPMENT) {
 
-       if(isValidChestplate(e)){
-           Objects.requireNonNull(e.getEquipment()).setChestplate(BloodMoon.data.CHESTPLATE.toItemStack());
-           e.getEquipment().setChestplateDropChance(0.0f);
+            ArmourData randomEquipment = MoonRandom.generateRandomEquipment(BloodMoon.equipment_pool, false);
+            HELMET = randomEquipment.HELMET.toItemStack();
+            CHESTPLATE = randomEquipment.CHESTPLATE.toItemStack();
+            LEGGINGS = randomEquipment.LEGGINGS.toItemStack();
+            BOOTS = randomEquipment.BOOTS.toItemStack();
+            MAINHAND = randomEquipment.MAINHAND.toItemStack();
+            OFFHAND = randomEquipment.OFFHAND.toItemStack();
+        }
 
-       }
 
-        if(isValidLeggings(e)){
-            Objects.requireNonNull(e.getEquipment()).setLeggings(BloodMoon.data.LEGGINGS.toItemStack());
-            e.getEquipment().setLeggingsDropChance(0.0f);
+
+
+
+            if (isValidHelmet(e)) {
+                Objects.requireNonNull(e.getEquipment()).setHelmet(HELMET);
+                e.getEquipment().setHelmetDropChance(0.0f);
+            }
+
+            if (isValidChestplate(e)) {
+                Objects.requireNonNull(e.getEquipment()).setChestplate(CHESTPLATE);
+                e.getEquipment().setChestplateDropChance(0.0f);
+
+            }
+
+            if (isValidLeggings(e)) {
+                Objects.requireNonNull(e.getEquipment()).setLeggings(LEGGINGS);
+                e.getEquipment().setLeggingsDropChance(0.0f);
+
+
+            }
+
+            if (isValidBoots(e)) {
+                Objects.requireNonNull(e.getEquipment()).setBoots(BOOTS);
+                e.getEquipment().setBootsDropChance(0.0f);
+
+            }
+
+            if (isValidMainhand(e)) {
+                Objects.requireNonNull(e.getEquipment()).setItemInMainHand(MAINHAND);
+                e.getEquipment().setItemInMainHandDropChance(0.0f);
+
+            }
+
+            if (isValidOffhand(e)) {
+                Objects.requireNonNull(e.getEquipment()).setItemInOffHand(LEGGINGS);
+                e.getEquipment().setItemInOffHandDropChance(0.0f);
+
+
+            }
+
+            try {
+                if (!BloodMoon.TRACKED_ENTITIES.contains(e.getEntityId())) {
+                    BloodMoon.TRACKED_ENTITIES.add(e.getEntityId());
+                    //  BloodMoon.plugin.getLogger().info(""+e.getEntityId());
+                }
+            } catch (NullPointerException ex) {
 
 
         }
-
-        if(isValidBoots(e)){
-            Objects.requireNonNull(e.getEquipment()).setBoots(BloodMoon.data.BOOTS.toItemStack());
-            e.getEquipment().setBootsDropChance(0.0f);
-
-        }
-
-        if(isValidMainhand(e)){
-            Objects.requireNonNull(e.getEquipment()).setItemInMainHand(BloodMoon.data.MAINHAND.toItemStack());
-            e.getEquipment().setItemInMainHandDropChance(0.0f);
-
-        }
-
-        if(isValidOffhand(e)){
-            Objects.requireNonNull(e.getEquipment()).setItemInOffHand(BloodMoon.data.OFFHAND.toItemStack());
-            e.getEquipment().setItemInOffHandDropChance(0.0f);
-
-
-        }
-
 
 
     }
@@ -257,7 +282,7 @@ public class MoonEntitySpawnEv implements Listener {
                             BloodMoon.ACTIVE_BLOODMOON.remove(world);
 
                             for (LivingEntity livingEntity : world.getLivingEntities()) {
-                                if (livingEntity.getType().equals(EntityType.ZOMBIE)) {
+                                if (livingEntity.getType().equals(EntityType.ZOMBIE) && BloodMoon.TRACKED_ENTITIES.contains(livingEntity.getEntityId())) {
                                     removeItems(livingEntity);
                                 }
 
