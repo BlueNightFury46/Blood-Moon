@@ -61,25 +61,25 @@ public class GUIEvents implements Listener {
                 case EquipmentGUI.HELMET_POS -> {
                  if(!EquipmentGUI.getHelmetItem().getType().equals(DEFAULT_MATERIAL)){
 
-                    EquipmentGUI.setHelmet(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Helmet", "Set the blood moon helmet"));
+                    EquipmentGUI.setHelmet(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Helmet", ChatColor.GRAY+"Set the blood moon helmet"));
                     return;
                 }}
                 case EquipmentGUI.CHESTPLATE_POS -> {
                     if(!EquipmentGUI.getChestplateItem().getType().equals(DEFAULT_MATERIAL)){
 
-                        EquipmentGUI.setChestplate(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Chestplate", "Set the blood moon chestplate"));
+                        EquipmentGUI.setChestplate(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Chestplate", ChatColor.GRAY+"Set the blood moon chestplate"));
                     return;
                 }}
                 case EquipmentGUI.LEGGINGS_POS -> {
                     if(!EquipmentGUI.getLeggingsItem().getType().equals(DEFAULT_MATERIAL)){
 
-                        EquipmentGUI.setLeggings(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Leggings", "Set the blood moon leggings"));
+                        EquipmentGUI.setLeggings(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Leggings", ChatColor.GRAY+"Set the blood moon leggings"));
                     return;
                 }}
                 case EquipmentGUI.BOOTS_POS -> {
                     if(!EquipmentGUI.getBootsItem().getType().equals(DEFAULT_MATERIAL)){
 
-                        EquipmentGUI.setBoots(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Boots", "Set the blood moon boots"));
+                        EquipmentGUI.setBoots(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Boots", ChatColor.GRAY+"Set the blood moon boots"));
                     return;
                 }}
 
@@ -88,14 +88,14 @@ public class GUIEvents implements Listener {
                 case EquipmentGUI.MAINHAND_POS -> {
                     if(!EquipmentGUI.getMainhandItem().getType().equals(DEFAULT_MATERIAL)){
 
-                        EquipmentGUI.setMainhand(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Mainhand", "Set the blood moon mainhand"));
+                        EquipmentGUI.setMainhand(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Mainhand", ChatColor.GRAY+"Set the blood moon mainhand"));
                     return;
                 }}
                 case EquipmentGUI.OFFHAND_POS -> {
                     if(!EquipmentGUI.getOffhandItem().getType().equals(DEFAULT_MATERIAL)){
 
 
-                        EquipmentGUI.setOffhand(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Offhand", "Set the blood moon offhand"));
+                        EquipmentGUI.setOffhand(genGUIItem(EquipmentGUI.DEFAULT_MATERIAL, 1, "Offhand", ChatColor.GRAY+"Set the blood moon offhand"));
                     return;
                 }}
 

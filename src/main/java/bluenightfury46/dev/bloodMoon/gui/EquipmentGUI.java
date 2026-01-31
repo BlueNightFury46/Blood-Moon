@@ -179,7 +179,7 @@ public class EquipmentGUI {
          inventory.setItem(OFFHAND_POS,genGUIItem(BloodMoon.data.OFFHAND.toItemStack().getType(), 1, "Offhand", ChatColor.GRAY+"Set the blood moon offhand"));
 
          inventory.setItem(APPLY_POS,genGUIItem(Material.LIME_STAINED_GLASS, 1, (ChatColor.GREEN+"Apply"), ChatColor.GRAY+"Applies the current armour selection"));
-         inventory.setItem(CANCEL_POS,genGUIItem(Material.BARRIER, 1, (ChatColor.RED+"Cancel"), ChatColor.GRAY+"Deletes the current armour selection"));
+         inventory.setItem(CANCEL_POS,genGUIItem(Material.BARRIER, 1, (ChatColor.RED+"Clear"), ChatColor.GRAY+"Deletes the current armour selection"));
 
          setEnabledPool(BloodMoon.equipment_pool.RANDOM_EQUIPMENT);
          //inventory.setItem(VIEW_POOL,genGUIItem(Material.BARRIER, 1, (ChatColor.GRAY+"View Item Pool (PLACEHOLDER)"), ChatColor.GRAY+"View the item pool GUI"));
