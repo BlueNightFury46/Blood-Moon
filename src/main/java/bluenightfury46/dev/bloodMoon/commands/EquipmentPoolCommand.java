@@ -21,7 +21,7 @@ public class EquipmentPoolCommand implements CommandExecutor {
     final String COMMAND_HELP = ChatColor.BLUE + "Command Usage:\n/equipmentpool <ACTION> "+ChatColor.GOLD+"<ITEM_SLOT>";
 
     String SUCCESS_RESPONSE(String ARMOUR_PIECE, String ITEM_NAME){
-        return (ChatColor.GREEN+"Successfully added " + ChatColor.LIGHT_PURPLE + ITEM_NAME + ChatColor.GREEN + " to the " + ChatColor.GOLD + ARMOUR_PIECE + ChatColor.AQUA + " item pool");
+        return (ChatColor.GREEN+"Successfully added " + ChatColor.LIGHT_PURPLE + ITEM_NAME + ChatColor.GREEN + " to the " + ChatColor.GOLD + ARMOUR_PIECE + ChatColor.GREEN + " item pool");
     }
 
 
